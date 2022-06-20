@@ -55,30 +55,15 @@ function addMemberTeam(){
   document.getElementById("image").value ="";
   
   // crezione elemento da pushare nell'arrey
-  const newClass = {
+  const newTeamMember = {
     name: memberTeamName,
     role: memberTeamRole,
     image: memberTeamImg,
   };
 
-  teamArrey.push(newClass);
+  teamArrey.push(newTeamMember);
 
-  // creo l' innerHTML per metterlo nel documento
-  const  cardTeamMember =
-    `
-      <div class="team-card">
-        <div class="card-image">
-          <img src=${memberTeamImg} alt="${memberTeamName}">
-        </div>
-        <div class="card-text">
-          <h3>${memberTeamName}</h3>
-          <p>${memberTeamRole}</p>
-        </div>
-      </div>
-    `;
-    
-  // lo inserisco nel documento 
-  teamContainer.innerHTML += cardTeamMember;
+  drowMemberTeam(newTeamMember);
 };
 
 // -----------------------------------
@@ -90,22 +75,26 @@ function createMemberTeam(teamArrey){
     
     // Mi salvo ogni singola classe in una variabile
     const thisTeamMember = teamArrey[i];
-
-    // creo l' innerHTML per metterlo nel documento
-    const  cardTeamMember =
-    `
-      <div class="team-card">
-        <div class="card-image">
-          <img src=${thisTeamMember.image} alt="${thisTeamMember.name}">
-        </div>
-        <div class="card-text">
-          <h3>${thisTeamMember.name}</h3>
-          <p>${thisTeamMember.role}</p>
-        </div>
-      </div>
-    `;
-
-    // lo inserisco nel documento 
-    teamContainer.innerHTML += cardTeamMember;
+    
+    drowMemberTeam(thisTeamMember);
   }
+}
+
+function drowMemberTeam(TeamMember){
+  // creo l' innerHTML per metterlo nel documento
+  const  cardTeamMember =
+  `
+    <div class="team-card">
+      <div class="card-image">
+        <img src=${TeamMember.image} alt="${TeamMember.name}">
+      </div>
+      <div class="card-text">
+        <h3>${TeamMember.name}</h3>
+        <p>${TeamMember.role}</p>
+      </div>
+    </div>
+  `;
+
+  // lo inserisco nel documento 
+  teamContainer.innerHTML += cardTeamMember;
 }
